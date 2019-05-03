@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic.base import TemplateView
+
 def getsummary(article):
 
     return 'summary of ' + str(article)
