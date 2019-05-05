@@ -16,8 +16,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from summary import views
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from summaryhelp import settings
 
 
 urlpatterns = [
@@ -25,6 +23,3 @@ urlpatterns = [
     path('summary/', views.view, name='summary'),
     path('summary_ajax/', views.ajax_view, name='summary-ajax'),
 ]
-
-if settings.DEBUG == True:
-    urlpatterns += staticfiles_urlpatterns()
