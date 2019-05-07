@@ -1,3 +1,4 @@
+
 var menuItem = {
     "id": "selectText",
     "title": "SelectText",
@@ -10,7 +11,6 @@ chrome.contextMenus.onClicked.addListener(function(clickData){
     if (clickData.menuItemId == "selectText" && clickData.selectionText){            
             chrome.storage.sync.get(['total'], function(budget){
                 var newTotal = "";
-                newTotal += budget.total;
                 newTotal += clickData.selectionText;
                 chrome.storage.sync.set({'total': newTotal}, function(){               
                 });

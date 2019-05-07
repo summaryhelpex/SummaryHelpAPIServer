@@ -2,6 +2,7 @@ $(function(){
 
     chrome.storage.sync.get(['total'],function(selectedText){
         $('#total').text(selectedText.total);
+        $('#amount').val(selectedText.total);
     });
 
     $('#spendAmount').click(function(){
