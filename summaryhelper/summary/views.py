@@ -18,6 +18,8 @@ def ajax_view(request):
     context = {'article' : data}
     return JsonResponse(context,json_dumps_params = {'ensure_ascii': True})
 
+"""
 def ajax_view(request, *args, **kwargs):
     
-    return JsonResponse({'a':'sujafdsfasjdnfkljsadfnlksjadfksdafsdaklf'})
+    return JsonResponse({'article':'sujafdsfasjdnfkljsadfnlksjadfksdafsdaklf'})
+"""
