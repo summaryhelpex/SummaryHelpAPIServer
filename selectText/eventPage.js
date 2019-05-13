@@ -1,4 +1,3 @@
-
 var menuItem = {
     "id": "selectText",
     "title": "SelectText",
@@ -15,7 +14,14 @@ chrome.contextMenus.onClicked.addListener(function(clickData){
                 chrome.storage.sync.set({'total': newTotal}, function(){               
                 });
             });
-        
+            // 이 데이터를 서버에 보내고,
+
+            // 데이ㅓ를 서버에서 받고
+            
+
+            //알람을 띠워준다.
+            //alert("hi");
+
     }
 });
 

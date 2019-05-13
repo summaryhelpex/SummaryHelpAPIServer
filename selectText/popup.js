@@ -4,7 +4,6 @@ $(function(){
         $('#total').text(selectedText.total);
         $('#amount').val(selectedText.total);
     });
-
     $('#spendAmount').click(function(){
         chrome.storage.sync.get(['total'],function(selectedText){
             var newTotal = "";
