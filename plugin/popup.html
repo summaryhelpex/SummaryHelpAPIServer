@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<!--
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+-->
+    <head>
+        <title>Text summary</title>
+       <!-- <script integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script> -->
+        <script src="jquery-3.1.0.min.js"></script>
+       <script src="popup.js"></script>
+       <style>
+            @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+            #article, #summary {
+                font-size : 20px;
+                padding: 5px;
+                margin: 3px;
+            }
+            #content{
+                display:flex;
+                font-family: 'Arial', sans-serif;
+            }
+            h3 {
+                font-size: 19px;
+            }
+            </style>
+    </head>
+
+    <body>
+        <div id = "entry">
+            <div in = "header">
+                <h1>Select Text</h1>
+            </div>
+            <div id = "content">
+                <div id = "originalText">
+                    <h3>Original Text</h3>
+                    <form id="textForm" name="textForm">
+                    <div id="result"></div>
+                    <textarea name="article" id="article" cols="30" rows="15"></textarea>
+                    <center><input type="button" id="submit" name="submit" value="summary!!"/></center>
+                </div>
+                <div id = "summaryText">
+                    <!--서머리 버튼을 누르면, 옆 텍스트에어리어에 서머리된 내용을 가지고 온다.-->
+                    <h3>Summary Text</h3>
+                    <textarea id="summary" type="text" name = "summary-ajax" cols = "30" rows ="15"></textarea>
+                </div>
+            </div>
+            <div id="evaluate"></div>
+        </form>
+        </div>
+        <!--
+        <script>
+            $('#submit').click(function () {
+                //var art = {'article' : $('#article').val()};
+                //var new_art = JSON.stringify(art, ['article']);
+                //new_art = new_art.serialize();
+
+                var queryString = $('#textForm').serialize();
+
+                alert(queryString);
+                console.log(result);
+            $.ajax({
+                url:'http://13.209.8.253/summary_ajax',
+                //data : new_art,
+                data: queryString,
+                dataType:'json',
+                type:'POST',
+                cache : false,
+                processData: false,
+                success: function (data) {
+
+                    var new_data = data['article'];
+                    $('#result').html(new_data);
+
+                    //$('#result').text(result['article']);
+                    console.log(result);
+                    }
+                ,error:function(request,status,error){
+                    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
+                })
+            });
+    </script>
+
+-->
+    </body>
+
+</html>
