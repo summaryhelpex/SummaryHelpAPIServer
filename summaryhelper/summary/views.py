@@ -49,10 +49,11 @@ def ajax_view(request, *args, **kwargs):
 @csrf_exempt
 def eval_ajax_view(request, *args, **kwargs) :
 
-    key = Article.objects.latest('id')
-    summary_star = Summary(article_id=key)
-
     eval = request.POST.get('evaluate', None)
+    key = Article.objects.latest('id')
+
+    summary_star = Summary.objects.get(article_id=key)
+
     new_eval = int(eval)
     summary_star.star = new_eval
 
