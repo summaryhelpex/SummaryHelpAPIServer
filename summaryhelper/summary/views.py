@@ -10,19 +10,23 @@ def getsummary(article):
 
     return 'summary of ' + str(article)
 
+def getarticle(*args):
+
+    return str(args)
+
 
 def storedb(*args, **kwargs):
 
+    summary_text = getsummary(args)
     article = Article()
-    #return_summary = request
     article.article_text = args
     article.pub_date = timezone.datetime.now()
     article.save()
-#    new_article = get_object_or_404(Article, pk=)
-    summary = Summary(id=None, summary_text=getsummary(args), article=article)
+
+    summary = Summary(id=None, summary_text=summary_text, article=article)
     summary.save()
 
-    return summary.summary_text
+    return summary_text
 
 
 #test page
@@ -36,32 +40,23 @@ def view(request, *args, **kwargs):
 @csrf_exempt
 def ajax_view(request, *args, **kwargs):
 
-#    summary = Summary()
-#    if request.POST.get('evaluate') == True :
-#        print(request.POST['evaluate'])
-    #summary
     data = request.POST.get('article')
 
-    #summarytext= storedb(data)
-    #context = {'summary': summarytext}
-    context = {'article': data}
+    summarytext = storedb(data)
+    context = {'summary': summarytext}
     return JsonResponse(context, json_dumps_params={'ensure_ascii': True})
 
+@csrf_exempt
 def eval_ajax_view(request, *args, **kwargs) :
 
-    article = Article()
-    summary = Summary()
+    key = Article.objects.latest('id')
+    summary_star = Summary(article_id=key)
 
     eval = request.POST.get('evaluate', None)
-    data = request.POST.get('article', '')
     new_eval = int(eval)
-    Summary.objects.filter(article__article_text=args)
+    summary_star.star = new_eval
 
+    summary_star.save()
 
- #   context = {'evaluate': eval}
-    context = {'evaluate': eval, 'article': data}
+    context = {'evaluate': eval}
     return JsonResponse(context, json_dumps_params={'ensure_ascii' : True})
-'''    
-def ajax_view(request, *args, **kwargs):
-    
-    return JsonResponse({'a':'sujafdsfasjdnfkljsadfnlksjadfksdafsdaklf'})'''
