@@ -7,22 +7,19 @@ from django.utils import timezone
 def getsummary(article):
 
     # write down models method()
+
     return 'summary of ' + str(article)
 
 
-def storedb(request, *args, **kwargs):
-    article = Article()
-    summary = Summary()
+def storedb(*args, **kwargs):
 
+    article = Article()
     #return_summary = request
     article.article_text = args
     article.pub_date = timezone.datetime.now()
     article.save()
-
 #    new_article = get_object_or_404(Article, pk=)
-    summary.summary_text = getsummary(args)
-
-
+    summary = Summary(id=None, summary_text=getsummary(args), article=article)
     summary.save()
 
     return summary.summary_text
@@ -45,14 +42,24 @@ def ajax_view(request, *args, **kwargs):
     #summary
     data = request.POST.get('article')
 
-    #storedb(request, data)
+    #summarytext= storedb(data)
+    #context = {'summary': summarytext}
     context = {'article': data}
     return JsonResponse(context, json_dumps_params={'ensure_ascii': True})
 
 def eval_ajax_view(request, *args, **kwargs) :
 
+    article = Article()
+    summary = Summary()
+
     eval = request.POST.get('evaluate', None)
-    context = {'evaluate': eval}
+    data = request.POST.get('article', '')
+    new_eval = int(eval)
+    Summary.objects.filter(article__article_text=args)
+
+
+ #   context = {'evaluate': eval}
+    context = {'evaluate': eval, 'article': data}
     return JsonResponse(context, json_dumps_params={'ensure_ascii' : True})
 '''    
 def ajax_view(request, *args, **kwargs):
