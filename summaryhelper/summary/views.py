@@ -10,6 +10,10 @@ def getsummary(article):
 
     return 'summary of ' + str(article)
 
+def getarticle(*args):
+
+    return str(args)
+
 
 def storedb(*args, **kwargs):
 
@@ -42,18 +46,19 @@ def ajax_view(request, *args, **kwargs):
     #summary
     data = request.POST.get('article')
 
-    #summarytext= storedb(data)
-    #context = {'summary': summarytext}
+    summarytext = storedb(data)
+    context = {'summary': summarytext}
     context = {'article': data}
     return JsonResponse(context, json_dumps_params={'ensure_ascii': True})
 
+@csrf_exempt
 def eval_ajax_view(request, *args, **kwargs) :
 
     article = Article()
     summary = Summary()
-
-    eval = request.POST.get('evaluate', None)
     data = request.POST.get('article', '')
+    eval = request.POST.get('evaluate', None)
+
     new_eval = int(eval)
     Summary.objects.filter(article__article_text=args)
 
