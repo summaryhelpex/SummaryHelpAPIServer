@@ -43,9 +43,8 @@ def ajax_view(request, *args, **kwargs):
 #    if request.POST.get('evaluate') == True :
 #        print(request.POST['evaluate'])
     #summary
-
     data = request.POST.get('article')
-    print(request.POST['article'])
+
     #storedb(request, data)
     context = {'article': data}
     return JsonResponse(context, json_dumps_params={'ensure_ascii': True})
@@ -53,8 +52,6 @@ def ajax_view(request, *args, **kwargs):
 def eval_ajax_view(request, *args, **kwargs) :
 
     eval = request.POST.get('evaluate', None)
-    print(request.POST['evaluate'])
-    
     context = {'evaluate': eval}
     return JsonResponse(context, json_dumps_params={'ensure_ascii' : True})
 '''    
