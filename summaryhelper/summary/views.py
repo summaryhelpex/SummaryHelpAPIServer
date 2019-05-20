@@ -23,7 +23,7 @@ def storedb(*args, **kwargs):
     article.pub_date = timezone.datetime.now()
     article.save()
 
-    summary = Summary(id=None, summary_text=summary_text, article=article)
+    summary = Summary(id=1, summary_text=summary_text, article=article)
     summary.save()
 
     return summary_text
@@ -50,12 +50,15 @@ def ajax_view(request, *args, **kwargs):
 def eval_ajax_view(request, *args, **kwargs) :
 
     eval = request.POST.get('evaluate', None)
-    key = Article.objects.latest('id')
 
-    summary_star = Summary.objects.get(article_id=key)
+    key = Article.objects.latest('id').id
+    article = get_object_or_404(Article, pk=key)
+
+    summary_star = article.summary_set.get(pk=1)
 
     new_eval = int(eval)
-    summary_star.star = new_eval
+
+    summary_star.star += new_eval
 
     summary_star.save()
 
