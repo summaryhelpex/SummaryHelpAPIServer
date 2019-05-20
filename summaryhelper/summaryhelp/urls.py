@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('summary/', views.view, name='summary'),
     path('summary_ajax/', views.ajax_view, name='summary-ajax'),
+    path('eval_ajax/',views.eval_ajax_view, name='eval-ajax'),
 ]
