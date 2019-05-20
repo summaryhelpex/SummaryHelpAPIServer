@@ -46,8 +46,8 @@ def ajax_view(request, *args, **kwargs):
     #summary
     data = request.POST.get('article')
 
-    #summarytext= storedb(data)
-    #context = {'summary': summarytext}
+    summarytext = storedb(data)
+    context = {'summary': summarytext}
     context = {'article': data}
     return JsonResponse(context, json_dumps_params={'ensure_ascii': True})
 
