@@ -3,19 +3,74 @@
 <html lang="ko">
 
 <head>
-    {% load static %}
-    <link rel="stylesheet" href="{% static "css/base.css"%}">
-    <title>Chaemoon</title>
-    <link href="https://fonts.googleapis.com/css?family=Nanum+Pen+Script" rel="stylesheet">
+        <title>Text summary</title>
+       <!-- <script integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script> -->
 
-</head>
+    </head>
 
-<body>
-    <div>
-        <div style="background: cadetblue">
-            <h1 class="chaemoon">{{ summary }}</h1>
-        </div>
-    </div>
-</body>
+    <body>
+        <h1>Select Text</h1>
+        <h2>Text: <span id="total">0</span></h2>
+        <h3>Enter Text</h3>
+        <form id="textForm" name="textForm">
+            <div id="result"></div>
+            <input id="article" name="article" type="text"/>
+            <input type="button" id="submit" name="submit" value="summary!!"/>
+        </form>
+        <br>
+        <form id="evalForm" name="evalForm">
+            <div id="evaluation">{% include 'evaluate.html' %}</div>
+            <div id="thank"></div>
+        </form>
 
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+       $('#submit').click(function () {
+                //var art = {'article' : $('#article').val()};
+                //var new_art = JSON.stringify(art, ['article']);
+                //new_art = new_art.serialize();
+                var queryString = $('#textForm').serialize();
+                alert(queryString);
+                console.log(result);
+            $.ajax({
+                url:'{% url 'summary-ajax' %}',
+                data: queryString,
+                dataType:'json',
+                type:'POST',
+                cache : false,
+                processData: false,
+                success: function (data) {
+                    var new_data = data['summary'];
+                    $('#result').html(new_data);
+                    console.log(result);
+                    $(function () {
+                        $('#eval').click(function () {
+                            var evalValue = $('#evalForm').serialize();
+                            $.ajax({
+                                url:{% url 'eval-ajax' %},
+                                data : evalValue,
+                                dataType: 'json',
+                                type:'POST',
+                                cache : false,
+                                processData: false,
+                                success: function (data) {
+                                    var evaluate = data['evaluate'];
+                                    alert(evaluate + '점 감사합니다!!');
+                                }
+                                ,error: function (error) {
+                                    alert('fail');
+                                }
+                            })
+                        })
+
+                    })
+                    }
+                ,error:function(request,status,error){
+                    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
+                })
+            });
+    });
+
+    </script>
 </html>
