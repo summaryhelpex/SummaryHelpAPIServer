@@ -61,9 +61,10 @@ def eval_ajax_view(request, *args, **kwargs) :
     summary_star = article.summary_set.get(pk=1) # 위 id값으로 불러온 article과 연결된 summary테이블의 컬럼들을 불러오는데 pk=1 인값을 불러와 summary된 텍스트의 별점을 매길수 있도록합니다.
 
 
-    summary_star.star += new_eval #아까 선언한 int형 숫자를 star변수에 넣어줍니다.
+    summary_star.star = new_eval #아까 선언한 int형 숫자를 star변수에 넣어줍니다.
 
     summary_star.save()  #star컬럼에 넣어준 숫자를 저장합니다.
 
     context = {'evaluate': eval} # context 변수로 key는 'evaluate'라하고 string형 변수를 client 에게 넘겨줍니다.
+    
     return JsonResponse(context, json_dumps_params={'ensure_ascii' : True}) #key와 value로 이뤄진 json형식을 client에게 반환합니다.
