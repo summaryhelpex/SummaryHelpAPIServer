@@ -4,17 +4,15 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse,JsonResponse
 from django.utils import timezone
+
+#summary model 을 통해 summary를 얻는 함수입니다.
 def getsummary(article):
 
     # write down models method()
 
-    return 'summary of ' + str(article)
+    return 'summary of ' + str(article) # summary model 을 통해 summary를 얻는 함수라 할수있습니다.
 
 #database에 저장 하는 함수입니다.
-
-    return str(args)
-
-
 def storedb(*args, **kwargs):
 
     summary_text = getsummary(args) #summary model에 article을 넣어 summary된 텍스트를 얻습니다.
@@ -31,6 +29,7 @@ def storedb(*args, **kwargs):
     return summary_text # summary 된 텍스트 를 반홥해줍니다.
 
 
+
 #test page
 def view(request, *args, **kwargs):
 
@@ -39,22 +38,22 @@ def view(request, *args, **kwargs):
     return render(request,'base.html', {'summary': summary1})
 
 
-@csrf_exempt
+@csrf_exempt #article->summary로 변환하여 Jsonresponse로 반환해주는 함수.
 def ajax_view(request, *args, **kwargs):
 
-    data = request.POST.get('article')
+    data = request.POST.get('article') #key값 'article'의 value를 받아 data변수로 넘겨줍니다.
 
-    summarytext = storedb(data)
-    context = {'summary': summarytext}
-    return JsonResponse(context, json_dumps_params={'ensure_ascii': True})
+    summarytext = storedb(data) # storedb 함수의 리턴값은 summary된 text입니다.
+    context = {'summary': summarytext} #json형식으로 응답해줘야할 변수입니다. key값은 'summary' value는 summarytext값인 변수입니다.
+    return JsonResponse(context, json_dumps_params={'ensure_ascii': True}) #client 에게 summary된 텍스트를 json 형식으로 응답해줍니다.
 
 @csrf_exempt
 def eval_ajax_view(request, *args, **kwargs) :
 
-    eval = request.POST.get('evaluate', None)
+    eval = request.POST.get('evaluate', None) # 사용자에게 키값'evaluate'의 value는 숫자로이뤄진 str형입니다.
 
-    key = Article.objects.latest('id').id
-    article = get_object_or_404(Article, pk=key)
+    new_eval = int(eval) # 따라서 str 형을 int 형으로 변환 시켜줍니다.
+
     key = Article.objects.latest('id').id  # summary테이블 안에있는 컬럼 star에 저장하기 위해선 일단 article 테이블에 마지막 text의 id값을 key값에 저장시켜주었습니다.
 
     article = get_object_or_404(Article, pk=key) # 그 id값으로 article 테이블안의 컬럼과 그테이블과의 외래키로 연결된 summary테이블컬럼도 불러옵니다.
@@ -66,5 +65,5 @@ def eval_ajax_view(request, *args, **kwargs) :
 
     summary_star.save()  #star컬럼에 넣어준 숫자를 저장합니다.
 
-    context = {'evaluate': eval}
-    return JsonResponse(context, json_dumps_params={'ensure_ascii' : True})
+    context = {'evaluate': eval} # context 변수로 key는 'evaluate'라하고 string형 변수를 client 에게 넘겨줍니다.
+    return JsonResponse(context, json_dumps_params={'ensure_ascii' : True}) #key와 value로 이뤄진 json형식을 client에게 반환합니다.
