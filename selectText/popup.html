@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Budget Manager</title>
+        <script src="jquery-3.1.0.min.js"></script>
+        <script src="popup.js"></script>
+        <style>
+            @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+            #amount, #summ {
+                font-size : 20px;
+                padding: 5px;
+                margin: 3px;
+            }
+            #body{
+                display:flex;
+                font-family: 'Arial', sans-serif;
+            }
+            h3 {
+                font-size: 19px;
+            }
+            </style>
+            
+    </head>
+    <body>
+        <div id = "entry">
+            <div id = "header">
+                <h1>Summary Helper</h1>
+                <!--<h2>Text: <span id="total">0</span></h2>-->
+            </div>
+            <form action="http://13.209.8.253/summary_ajax" method="GET"></form>
+            <div id = "body">
+                <div id = "originalText">
+                        <h3>Original Text</h3>
+                        <!--textare 넣어서, 사용자가 text 입력 가능하게하고,-->
+                        <textarea id="amount" type="text" name = "summary-ajax" cols = "30" rows ="15"></textarea>
+                </div>
+                <div id = "summaryText">
+                        <!--서머리 버튼을 누르면, 옆 텍스트에어리어에 서머리된 내용을 가지고 온다.-->
+                        <h3>Summary Text</h3>
+                        <textarea id="summ" type="text" name = "summary-ajax" cols = "30" rows ="15"></textarea>
+                </div>
+            </div>
+            <div id ="footer">
+                <center><input id="spendAmount" type="submit" value="Spend"/></center>
+            </div>
+        </form>
+        </div>
+    
+    </body>
+</html>

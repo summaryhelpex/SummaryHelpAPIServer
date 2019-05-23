@@ -1,0 +1,7 @@
+1. this program download
+2. chromeExtension add this directory
+3. drag the sentesnce you want
+4. you do right click and find our menu
+5. then, you click our program
+6. and our Extension Icon click
+7. you will show the sentense you want
