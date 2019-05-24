@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html lang="ko">
+        
 <!--<script src="jquery-3.1.0.min.js"></script>-->
 <head>
-
+        <script src="eventPage.js"></script>
+    <style>
+        .starR{
+            background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+            background-size: auto 100%;
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+            text-indent: -9999px;
+            cursor: pointer;
+          }
+    </style>
 </head>
 <body>
     <form method="post" name="eavlForm">
         <h2>더 나은 프로그램을 위해 평가해주세요!</h2>
 
-            <input type="radio" name="evaluate" id="eval1" value="1">
+            <!--<input type="radio" name="evaluate" id="eval1" value="1">
             <label for="eval1"><strong><font size="3">★</font></strong></label>
 
             <input type="radio" name="evaluate" id="eval2" value="2">
@@ -25,6 +37,25 @@
 
             <input type="button" name="eval" id="eval" value="평가하기">
             <div id="thank"></div>
+            -->
+            <div class="starRev">
+                    <span class="starR on">별1</span>
+                    <span class="starR">별2</span>
+                    <span class="starR">별3</span>
+                    <span class="starR">별4</span>
+                    <span class="starR">별5</span>
+                    <span class="starR">별6</span>
+                    <span class="starR">별7</span>
+                    <span class="starR">별8</span>
+                    <span class="starR">별9</span>
+                    <span class="starR">별10</span>
+
+            </div>
+            <div align = "left"> 
+                <p></p>
+                <input type="button" input name="eval" id="eval" value="평가하기">
+            </div>
+                  
     </form>
 
 </body>

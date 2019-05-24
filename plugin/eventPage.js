@@ -21,3 +21,9 @@ chrome.contextMenus.onClicked.addListener(function(clickData){
 chrome.storage.onChanged.addListener(function(changes, storageName){
     chrome.browserAction.setBadgeText({"text": changes.total.newValue.toString()});
 });
+
+$('.starRev span').click(function(){
+    $(this).parent().children('span').removeClass('on');
+    $(this).addClass('on').prevAll('span').addClass('on');
+    return false;
+  });
