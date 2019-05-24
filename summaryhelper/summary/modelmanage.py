@@ -49,6 +49,7 @@ class extractkeyword:
         ykeywords = simple_kwextractor.extract_keywords(text)
         ykeywords = sorted(ykeywords, key=lambda a_entry: a_entry[1])
         ykeywords=ykeywords[0:10]
+        print(ykeywords)
         for data in ykeywords:
             data = list(data)
             if 20-self.rakeweight is not 0:
@@ -59,10 +60,13 @@ class extractkeyword:
         for data in res:
             fres.append(data[1])
         fres = list(set(fres))
-        self.rakeweight=10
+        if len(fres) >5:
+           fres=fres[:5]
 
+        self.rakeweight=10
         for result in fres:
             if set(result) & set(fres) is not set():
                 self.rakeweight=self.rakeweight+1
+
         return fres 
 
