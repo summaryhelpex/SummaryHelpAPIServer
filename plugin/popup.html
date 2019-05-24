@@ -12,12 +12,19 @@
        <!-- <script integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script> -->
         <script src="jquery-3.1.0.min.js"></script>
        <script src="popup.js"></script>
+       <script src="eventPage.js"></script>
        <style>
+           div {
+               color : white;
+               background-color: skyblue;
+               border:0px solid white;
+           }
             @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
             #article, #summary {
                 font-size : 20px;
                 padding: 5px;
                 margin: 3px;
+                border-radius:10px 10px 10px 10px;
             }
             #content{
                 display:flex;
@@ -26,27 +33,45 @@
             h3 {
                 font-size: 19px;
             }
+            input[type=button]{
+            background:skyblue;
+
+            border:2px solid white;
+
+            border-radius:10px 10px 10px 10px;
+
+            color : white;
+            width:100px;
+            height:30px;
+            }
             </style>
     </head>
 
-    <body>
+    <body bgcolor = skyblue>
         <div id = "entry">
-            <div in = "header">
-                <h1>Select Text</h1>
+            <div id = "header">
+                <h1>
+                    Summary Help !! <img align = "right", src = 'iconWHITE.PNG'>
+                </h1>
+                
             </div>
             <div id = "content">
                 <div id = "originalText">
                     <h3>Original Text</h3>
                     <form id="textForm" name="textForm">
                     <div id="result"></div>
-                    <textarea name="article" id="article" cols="30" rows="15"></textarea>
-                    <center><input type="button" id="submit" name="submit" value="summary!!"/></center>
+                    <textarea name="article" id="article" cols="30" rows="15" style="color:black; FONT-FAMILY:Arial;"></textarea>
+                    
                 </div>
                 <div id = "summaryText">
                     <!--서머리 버튼을 누르면, 옆 텍스트에어리어에 서머리된 내용을 가지고 온다.-->
                     <h3>Summary Text</h3>
-                    <textarea id="summary" type="text" name = "summary-ajax" cols = "30" rows ="15"></textarea>
+                    <textarea id="summary" type="text" name = "summary-ajax" cols = "30" rows ="15" style="color:blue; FONT-FAMILY:Arial;"></textarea>
                 </div>
+            </div>
+            <div> <center>
+                    <input type="button" id="submit" name="submit" value="summary !!" />
+                </center>
             </div>
             <div id="evaluate"></div>
         </form>

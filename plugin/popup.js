@@ -20,10 +20,19 @@ $(function(){
                 var new_data = data['article'];
                 // 임시로 그냥 new_data를 summayText textarea에 넣어주었다.
                 $('#summary').val(new_data);
-
+                
+                
                 //평가 항목 html을 추가하고, click 이벤트를 넣어서 평가를 서버에 보내는게 한다.
                 $('#evaluate').load('evaluate.html',function(){
+                    
                     $('#eval').click(function () {
+
+                        $('.starRev span').click(function(){
+                            $(this).parent().children('span').removeClass('on');
+                            $(this).addClass('on').prevAll('span').addClass('on');
+                            return false;
+                          });
+                          
                         var evalValue = $('#evalForm').serialize();
                         //서버에 평가한 것을 보낸다.
                         $.ajax({
