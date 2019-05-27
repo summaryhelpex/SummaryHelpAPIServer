@@ -15,11 +15,11 @@ def getsummary(article):
 
 
 #database에 저장 하는 함수입니다.
-def storedb(*args, **kwargs):
+def storedb(data):
 
-    summary_text = getsummary(args) #summary model에 article을 넣어 summary된 텍스트를 얻습니다.
+    summary_text = getsummary(data) #summary model에 article을 넣어 summary된 텍스트를 얻습니다.
     article = Article() #Article 클래스를 통해 인스턴스 생성합니다.
-    article.article_text = args # args 는 튜플형식으로 article을 파라미터로 받아 article테이블의 컬럼 article_text 에 저장해줍니다.
+    article.article_text = data # data는 string형식으로 article을 파라미터로 받아 article테이블의 컬럼 article_text 에 저장해줍니다.
     article.pub_date = timezone.datetime.now()  #현재 시각기준으로 article테이블안에 컬럼 pub_date컬럼에 summary를 요청하는 시각을 넣어줍니다.
     article.save() # 각 컬럼의 저장된 값을 저장해줍니다.
 
