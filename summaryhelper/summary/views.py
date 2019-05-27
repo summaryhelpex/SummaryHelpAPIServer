@@ -43,7 +43,6 @@ def view(request, *args, **kwargs):
 def ajax_view(request, *args, **kwargs):
 
     data = request.POST.get('article') #key값 'article'의 value를 받아 data변수로 넘겨줍니다.
-
     summarytext = storedb(data) # storedb 함수의 리턴값은 summary된 text입니다.
     context = {'summary': summarytext} #json형식으로 응답해줘야할 변수입니다. key값은 'summary' value는 summarytext값인 변수입니다.
     return JsonResponse(context, json_dumps_params={'ensure_ascii': True}) #client 에게 summary된 텍스트를 json 형식으로 응답해줍니다.
