@@ -22,7 +22,7 @@ ROOT_DIR = os.path.dirname(BASE_DIR)
 SECRET_KEY = 'rc7q#&#q52&ezqyfjyo-rccb0ysrgf1jm!9f_gzbaprr(-zhpy'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '13.209.8.253', 'ec2-13-209-8-253.ap-northeast-2.compute.amazonaws.com']
 
@@ -116,7 +116,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 USE_ETAGS = True
 
@@ -129,6 +129,7 @@ STATICFILES_DIRS = [
     STATIC_DIR,
 ]
 STATIC_ROOT = os.path.join(ROOT_DIR, '.static_root')
+
 #django-cors-header==============================================
 
 CORS_ORIGIN_ALLOW_ALL = True
