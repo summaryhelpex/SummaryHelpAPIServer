@@ -1,16 +1,18 @@
 from django.shortcuts import render, get_object_or_404
 from summary.models import Article, Summary
-import json
 from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse,JsonResponse
+from django.http import JsonResponse
 from django.utils import timezone
+from Rake import modelmanage
 
 #summary model 을 통해 summary를 얻는 함수입니다.
 def getsummary(article):
 
-    # write down models method()
+    q = modelmanage.extractkeyword()
+    summary = q.get_Keyword(article)
+    summary_text = "".join(summary)
+    return 'summary of ' + summary_text  # summary model 을 통해 summary를 얻는 함수라 할수있습니다.
 
-    return 'summary of ' + str(article) # summary model 을 통해 summary를 얻는 함수라 할수있습니다.
 
 #database에 저장 하는 함수입니다.
 def storedb(*args, **kwargs):
@@ -29,13 +31,12 @@ def storedb(*args, **kwargs):
     return summary_text # summary 된 텍스트 를 반홥해줍니다.
 
 
-
 #test page
 def view(request, *args, **kwargs):
 
     article = 'The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend will understand that you are not asking about a specific type of gift or a specific item. “I am going to bring an apple pie,” your friend tells you. Again, the indefinite article indicates that she is not talking about a specific apple pie. Your friend probably doesn’t even have any pie yet.'
     summary1 = getsummary(article)
-    return render(request,'base.html', {'summary': summary1})
+    return render(request, 'base.html', {'summary': summary1})
 
 
 @csrf_exempt #article->summary로 변환하여 Jsonresponse로 반환해주는 함수.
@@ -47,10 +48,11 @@ def ajax_view(request, *args, **kwargs):
     context = {'summary': summarytext} #json형식으로 응답해줘야할 변수입니다. key값은 'summary' value는 summarytext값인 변수입니다.
     return JsonResponse(context, json_dumps_params={'ensure_ascii': True}) #client 에게 summary된 텍스트를 json 형식으로 응답해줍니다.
 
+
 @csrf_exempt
 def eval_ajax_view(request, *args, **kwargs) :
 
-    eval = request.POST.get('evaluate', None) # 사용자에게 키값'evaluate'의 value는 숫자로이뤄진 str형입니다.
+    eval = request.POST.get('evaluate', '') # 사용    자에게 키값'evaluate'의 value는 숫자로이뤄진 str형입니다.
 
     new_eval = int(eval) # 따라서 str 형을 int 형으로 변환 시켜줍니다.
 
@@ -60,11 +62,9 @@ def eval_ajax_view(request, *args, **kwargs) :
 
     summary_star = article.summary_set.get(pk=1) # 위 id값으로 불러온 article과 연결된 summary테이블의 컬럼들을 불러오는데 pk=1 인값을 불러와 summary된 텍스트의 별점을 매길수 있도록합니다.
 
-
     summary_star.star = new_eval #아까 선언한 int형 숫자를 star변수에 넣어줍니다.
 
     summary_star.save()  #star컬럼에 넣어준 숫자를 저장합니다.
 
     context = {'evaluate': eval} # context 변수로 key는 'evaluate'라하고 string형 변수를 client 에게 넘겨줍니다.
-    
     return JsonResponse(context, json_dumps_params={'ensure_ascii' : True}) #key와 value로 이뤄진 json형식을 client에게 반환합니다.
