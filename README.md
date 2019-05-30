@@ -1,6 +1,6 @@
 SummaryHelp API Server
 =============================================
-![Alt text](/.static_root/images/sh_logo.png) 
+![Alt text](.static_root/images/sh_logo.png) 
 
 Introduce
 ================================================
@@ -19,27 +19,27 @@ We also support Windows OS, but we recommend Ubuntu OS.
 Set up python
 ----------------------------------
 
-'''
-To set up python: http://www.python.org
-$ sudo apt-get install python3
-'''
+
+    To set up python: http://www.python.org
+    $ sudo apt-get install python3
+
 
 How to install
 --------------------------------
 **************************
 
-'''
-$ git clone https://github.com/summaryhelpex/SummaryHelp_APIServer.git
-$ cd SummaryHelp_APIServer
-$ pip install -r requirements.txt'''
+
+    $ git clone https://github.com/summaryhelpex/SummaryHelp_APIServer.git
+    $ cd SummaryHelp_APIServer
+    $ pip install -r requirements.txt
 
 How to run in local
 --------------------------------
 ***************************
 
-$ cd SummaryHelp_APIServer/summaryhelper
-$ python manage.py runserver
+    $ cd SummaryHelp_APIServer/summaryhelper
+    $ python manage.py runserver
 
 SummaryHelp Client
 ===========================
-'''If you want use SummaryHelp Client, then come with https://github.com/summaryhelpex/SummaryChrome_Client.git'''
+If you want use SummaryHelp Client, then come with https://github.com/summaryhelpex/SummaryChrome_Client.git
