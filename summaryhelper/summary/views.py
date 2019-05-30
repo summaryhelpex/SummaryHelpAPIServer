@@ -25,7 +25,7 @@ def storedb(data):
     article.pub_date = timezone.datetime.now()  #현재 시각기준으로 article테이블안에 컬럼 pub_date컬럼에 summary를 요청하는 시각을 넣어줍니다.
     article.save() # 각 컬럼의 저장된 값을 저장해줍니다.
 
-    summary = Summary(id=1, summary_text=summary_text, article=article)
+    summary = Summary(id=None, summary_text=summary_text, article=article)
     # summary클래스 안에있는 속성들각각에 추가해주면서 인스턴스화 시키고 각 article 마다 summary_text는 id = 1 로 정의하며 summary_text를 정의하고
     # article컬럼은  현재 article인스턴스로 연결해줌으로써 외래키로 연결됨을 볼수있습니다.
     summary.save()  # 인스턴스 추가한 속성값을 저장해줍니다.
@@ -61,7 +61,7 @@ def eval_ajax_view(request, *args, **kwargs) :
 
     article = get_object_or_404(Article, pk=key) # 그 id값으로 article 테이블안의 컬럼과 그테이블과의 외래키로 연결된 summary테이블컬럼도 불러옵니다.
 
-    summary_star = article.summary_set.get(pk=1) # 위 id값으로 불러온 article과 연결된 summary테이블의 컬럼들을 불러오는데 pk=1 인값을 불러와 summary된 텍스트의 별점을 매길수 있도록합니다.
+    summary_star = article.summary_set.get(article=article) # 위 id값으로 불러온 article과 연결된 summary테이블의 컬럼들을 불러와 summary된 텍스트의 별점을 매길수 있도록합니다.
 
     summary_star.star = new_eval #아까 선언한 int형 숫자를 star변수에 넣어줍니다.
 
