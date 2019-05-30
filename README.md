@@ -1,6 +1,7 @@
 SummaryHelp API Server
 =============================================
-![Alt text](.static_root/images/sh_logo.png) 
+
+![Alt text](summaryhelper/static/images/sh_logo.png) 
 
 Introduce
 ================================================
@@ -27,7 +28,6 @@ Set up python
 How to install
 --------------------------------
 **************************
-
 
     $ git clone https://github.com/summaryhelpex/SummaryHelp_APIServer.git
     $ cd SummaryHelp_APIServer
