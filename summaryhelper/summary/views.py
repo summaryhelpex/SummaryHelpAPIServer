@@ -33,7 +33,7 @@ def storedb(data):
     return summary_text # summary 된 텍스트 를 반홥해줍니다.
 
 
-#test page
+#test pagex
 def view(request, *args, **kwargs):
 
     article = 'The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend will understand that you are not asking about a specific type of gift or a specific item. “I am going to bring an apple pie,” your friend tells you. Again, the indefinite article indicates that she is not talking about a specific apple pie. Your friend probably doesn’t even have any pie yet.'
@@ -53,9 +53,9 @@ def ajax_view(request, *args, **kwargs):
 @csrf_exempt
 def eval_ajax_view(request, *args, **kwargs) :
 
-    eval = request.POST.get('evaluate', '') # 사용    자에게 키값'evaluate'의 value는 숫자로이뤄진 str형입니다.
+    eval = request.POST.get('score', '') # 사용    자에게 키값'evaluate'의 value는 숫자로이뤄진 str형입니다.
 
-    new_eval = int(eval) # 따라서 str 형을 int 형으로 변환 시켜줍니다.
+    new_eval = int(eval)  # 따라서 str 형을 int 형으로 변환 시켜줍니다.
 
     key = Article.objects.latest('id').id  # summary테이블 안에있는 컬럼 star에 저장하기 위해선 일단 article 테이블에 마지막 text의 id값을 key값에 저장시켜주었습니다.
 
@@ -67,5 +67,5 @@ def eval_ajax_view(request, *args, **kwargs) :
 
     summary_star.save()  #star컬럼에 넣어준 숫자를 저장합니다.
 
-    context = {'evaluate': eval} # context 변수로 key는 'evaluate'라하고 string형 변수를 client 에게 넘겨줍니다.
+    context = {'score': eval} # context 변수로 key는 'evaluate'라하고 string형 변수를 client 에게 넘겨줍니다.
     return JsonResponse(context, json_dumps_params={'ensure_ascii' : True}) #key와 value로 이뤄진 json형식을 client에게 반환합니다.
