@@ -11,9 +11,9 @@ def getsummary(article):
 
     q = modelmanage.extractkeyword()
     summary = q.get_Keyword(article)
-    summary_text = " ".join(summary)
+    summary_text = " ,".join(summary)
 
-    return 'summary of ' + summary_text  # summary model 을 통해 summary를 얻는 함수라 할수있습니다.
+    return summary_text  # summary model 을 통해 summary를 얻는 함수라 할수있습니다.
 
 
 #database에 저장 하는 함수입니다.
