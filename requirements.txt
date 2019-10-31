@@ -6,7 +6,7 @@ gunicorn==19.9.0
 jellyfish==0.7.1
 mysqlclient==1.4.2.post1
 networkx==2.3
-nltk==3.4.1
+nltk==3.4.5
 numpy==1.16.3
 pytz==2018.9
 rake-nltk==1.0.4
