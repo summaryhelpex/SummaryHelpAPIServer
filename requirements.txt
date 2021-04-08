@@ -1,6 +1,6 @@
 Click==7.0
 decorator==4.4.0
-Django==2.2.10
+Django==2.2.20
 django-cors-headers==2.5.3
 gunicorn==19.9.0
 jellyfish==0.7.1
